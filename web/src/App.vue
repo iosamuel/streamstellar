@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <div id="nav" v-if="!gameStarted">
       <router-link
         :to="`/channel/${lobby.channel}`"
         v-for="lobby in lobbies"
@@ -15,11 +15,14 @@
 
 <script>
 import { request as gFetch } from "graphql-request";
-import { ref } from "vue";
+import { provide, ref } from "vue";
 
 export default {
   setup() {
     const lobbies = ref([]);
+    const gameStarted = ref(false);
+
+    provide("gameStarted", gameStarted);
 
     gFetch(
       "http://localhost:5001/v1/graphql",
@@ -37,30 +40,10 @@ export default {
 
     return {
       lobbies,
+      gameStarted,
     };
   },
 };
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<style></style>

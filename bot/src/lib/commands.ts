@@ -66,10 +66,10 @@ class Commands {
           }
         );
 
-        this.client.say(
+        /* this.client.say(
           target,
           `Current lobby: ${Object.keys(lobby).join(" - ")}`
-        );
+        ); */
       });
   }
 }

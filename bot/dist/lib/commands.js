@@ -57,8 +57,6 @@ class Commands {
                 display_name,
                 logo,
                 lobby
-            }).then(data => {
-                console.log(data);
             });
             this.client.say(target, `Current lobby: ${Object.keys(lobby).join(" - ")}`);
         });
